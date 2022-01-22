@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
             Response.fail(Status.TOKEN_ERROR.getCode(), Status.TOKEN_ERROR.getMsg());
         }
         LoginUserVO loginUserVo = new LoginUserVO();
-        loginUserVo.setId(String.valueOf(userPO.getId()));
+        loginUserVo.setId(userPO.getId());
         loginUserVo.setNickname(userPO.getNickname());
         loginUserVo.setAvatar(userPO.getAvatar());
         loginUserVo.setAccount(userPO.getAccount());
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
         }
         UserVO userVo = new UserVO();
         BeanUtils.copyProperties(userPO,userVo);
-        userVo.setId(String.valueOf(userPO.getId()));
+        userVo.setId(userPO.getId());
         return userVo;
     }
 

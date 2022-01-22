@@ -14,6 +14,7 @@ public class ArticlePO {
     private Integer commentCounts;
     private Integer viewCounts;
     private Long authorId;
+    private Long bodyId;
     private Long categoryId;
     private Integer weight;
     private Long createDate;

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @TableName("ms_comment")
-public class CommentPO {
+public class ArticleCommentPO {
     private Long id;
     private String content;
     private Long createDate;

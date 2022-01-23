@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface TagMapper extends BaseMapper<TagPO> {
     List<TagPO>  findTagsByArticleId(Long articleId);
+    List<Long> findHotsTagIds(int limit);
+    List<TagPO> findTagByTagIds(List<Long> tagIds);
 }

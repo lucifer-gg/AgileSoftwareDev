@@ -19,6 +19,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //后续增加拦截路径
+        //测试阶段暂时不拦截
         registry.addInterceptor(logInterceptor)
                 .addPathPatterns("/test");
 

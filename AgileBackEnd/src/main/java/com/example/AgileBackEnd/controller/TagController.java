@@ -12,15 +12,32 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tag")
 public class TagController {
     @Autowired
     private TagService tagService;
-    @GetMapping("/getTagsByArticleId/{id}")
+    @GetMapping("/tags/getTagsByArticleId/{id}")
     public Response getTagsByArticleId(@PathVariable("id")Long id){
         List<TagVO> tagsByArticleId = tagService.findTagsByArticleId(id);
         return Response.success(tagsByArticleId);
-
-
     }
+    @GetMapping("/tags/hot")
+    public Response hot(){
+        int limit = 6;
+        return tagService.findHostTags(limit);
+    }
+    @GetMapping("/tags")
+    public Response findAll(){
+        return tagService.findAllTag();
+    }
+
+    @GetMapping("/tags/detail")
+    public Response findAllDetail(){
+        return tagService.findAllTagDetail();
+    }
+
+    @GetMapping("/tags/detail/{id}")
+    public Response findDetailById(@PathVariable("id") Long id){
+        return tagService.findArticleTagsById(id);
+    }
+
 }

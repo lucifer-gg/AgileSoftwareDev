@@ -36,11 +36,11 @@ public class ArticleController {
         return articleService.newArticles(limit);
     }
 
-//
-//    @PostMapping("listArchives")
-//    public Response listArchives(){
-//        return articleService.listArchives();
-//    }
+
+    @PostMapping("/articles/listArchives")
+    public Response listArchives(){
+        return articleService.listArchives();
+    }
 
     @PostMapping("/articles/view/{id}")
     public Response findArticleById(@PathVariable("id") Long articleId){

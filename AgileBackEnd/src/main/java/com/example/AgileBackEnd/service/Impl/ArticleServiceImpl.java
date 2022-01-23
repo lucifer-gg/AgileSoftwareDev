@@ -107,7 +107,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Response listArchives() {
-        return null;
+        List<ArchiveVO> articles = articleMapper.listArchives();
+        return Response.success(articles);
     }
 
     @Override

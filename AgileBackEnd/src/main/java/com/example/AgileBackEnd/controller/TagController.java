@@ -15,16 +15,19 @@ import java.util.List;
 public class TagController {
     @Autowired
     private TagService tagService;
+
     @GetMapping("/tags/getTagsByArticleId/{id}")
     public Response getTagsByArticleId(@PathVariable("id")Long id){
         List<TagVO> tagsByArticleId = tagService.findTagsByArticleId(id);
         return Response.success(tagsByArticleId);
     }
+
     @GetMapping("/tags/hot")
     public Response hot(){
         int limit = 6;
         return tagService.findHostTags(limit);
     }
+
     @GetMapping("/tags")
     public Response findAll(){
         return tagService.findAllTag();

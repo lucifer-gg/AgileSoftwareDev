@@ -19,6 +19,7 @@ public class ArticleController {
     private CategoryService categoryService;
     @Autowired
     private CommentService commentService;
+
     @PostMapping
     public Response listArticle(@RequestBody PageParams pageParams){
         return articleService.listArticle(pageParams);
@@ -36,7 +37,6 @@ public class ArticleController {
         return articleService.newArticles(limit);
     }
 
-
     @PostMapping("/articles/listArchives")
     public Response listArchives(){
         return articleService.listArchives();
@@ -51,6 +51,7 @@ public class ArticleController {
     public Response publish(@RequestBody ArticleParam articleParam){
         return articleService.publishArticle(articleParam);
     }
+
     @GetMapping("/categorys")
     public Response categories(){
         return categoryService.findAllCategory();

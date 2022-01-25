@@ -1,24 +1,27 @@
 <template>
   <div id="home">
     <el-container>    
-      <base-header :activeIndex="activeIndex"></base-header>	
+      <blog-header :activeIndex="activeIndex"></blog-header>	
       <router-view class="me-container"/>
+      <blog-footer v-show="footerShow"></blog-footer>
     </el-container>
   </div>
 </template>
 
 <script>
-import BaseHeader from '@/views/BaseHeader'
-
+import BlogHeader from '@/views/BlogHeader'
+import BlogFooter from '@/views/BlogFooter'
 export default{
   name:'Home',
   data(){
     return{
-      activeIndex:'/'
+      activeIndex:'/',
+      footerShow:true
     }
   },
   components:{
-    'base-header':BaseHeader
+    'blog-header':BlogHeader,
+    'blog-footer':BlogFooter
   },
   beforeRouteEnter (to, from, next){
     next(vm => {
@@ -26,8 +29,20 @@ export default{
     })
   },
   beforeRouteUpdate (to, from, next) {
+    if(to.path == '/'){
+      this.footerShow = true
+    }else{
+      this.footerShow = false
+    }
     this.activeIndex = to.path
     next()
 	}
 }
 </script>
+
+<style>
+
+.me-container{
+  margin: 100px auto 140px;
+}
+</style>

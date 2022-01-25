@@ -29,3 +29,21 @@
     }
   }
 </script>
+
+<style scoped>
+  .el-container{
+    width: 960px;
+  }
+
+  .el-aside{
+    margin-left: 20px;
+    width: 260px;
+  }
+
+  .el-main{
+    padding: 0px;
+    line-height: 16px;
+  }
+
+  
+</style>

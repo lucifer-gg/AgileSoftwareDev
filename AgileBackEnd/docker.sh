@@ -1,10 +1,11 @@
 #!/bin/bash
 #maven打包
+cd ./AgileBackEnd
 mvn clean package
 echo 'package ok!'
+
 echo 'build start!'
-cd ./AgileBackEnd
-service_name='AgileBackEnd'
+service_name='agilebackend'
 service_port=8888
 #查看镜像id
 IID=$(docker images | grep "$service_name" | awk '{print $3}')

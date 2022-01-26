@@ -10,7 +10,7 @@ import Top from '@/components/top/Top'
 export default {
   name: 'App',
   components: {
-    Top
+    'top':Top,
   }
 }
 </script>

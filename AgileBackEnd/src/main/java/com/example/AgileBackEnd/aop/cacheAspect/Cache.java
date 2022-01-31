@@ -7,6 +7,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface Cache {
 
+    //缓存组件
+
     long expire() default 1 * 60 * 1000;
 
     String name() default "";

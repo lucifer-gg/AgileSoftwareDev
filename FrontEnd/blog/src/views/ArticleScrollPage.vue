@@ -7,6 +7,7 @@
 <script>
   import ArticleItem from '@/components/article/ArticleItem'
   import ScrollPage from '@/components/scrollpage'
+  import {getArticles} from '@/api/article'
 
   export default {
     name: "ArticleScrollPage",
@@ -34,7 +35,7 @@
           this.noData = false
           this.articles = []
           this.innerPage.pageNumber = 1
-          // this.getArticles()
+          this.getArticles()
         },
         deep: true
       },
@@ -43,13 +44,13 @@
           this.noData = false
           this.articles = []
           this.innerPage = this.page
-          // this.getArticles()
+          this.getArticles()
         },
         deep: true
       }
     },
     created() {
-      // this.getArticles()
+      this.getArticles()
     },
     data() {
       return {
@@ -65,9 +66,34 @@
       }
     },
     methods: {
+      load() {
+        this.getArticles()
+      },
       view(id) {
         this.$router.push({path: `/view/${id}`})
       },
+      getArticles() {
+        let that = this
+        that.loading = true
+
+        getArticles(that.query, that.innerPage).then(data => {
+
+          let newArticles = data.data
+          if (newArticles && newArticles.length > 0) {
+            that.innerPage.pageNumber += 1
+            that.articles = that.articles.concat(newArticles)
+          } else {
+            that.noData = true
+          }
+
+        }).catch(error => {
+          if (error !== 'error') {
+            that.$message({type: 'error', message: '文章加载失败!', showClose: true})
+          }
+        }).finally(() => {
+          that.loading = false
+        })
+      }
     },
     components: {
       'article-item': ArticleItem,

@@ -8,7 +8,13 @@ Vue.use(Router)
 
 const router = new Router({
   routes: [
-    
+    {
+      path: '/write/:id?',
+      component: r => require.ensure([], () => r(require('@/views/blog/BlogWrite')), 'blogwrite'),
+      meta: {
+        requireLogin: true
+      },
+    },
     {
       path: '',
       name: 'Home',
@@ -17,6 +23,30 @@ const router = new Router({
         {
           path: '/',
           component: r => require.ensure([], () => r(require('@/views/Index')), 'index')
+        },
+        {
+          path: '/log',
+          component: r => require.ensure([], () => r(require('@/views/Log')), 'log')
+        },
+        {
+          path: '/archives/:year?/:month?',
+          component: r => require.ensure([], () => r(require('@/views/blog/BlogArchive')), 'archives')
+        },
+        {
+          path: '/messageBoard',
+          component: r => require.ensure([], () => r(require('@/views/MessageBoard')), 'messageboard')
+        },
+        {
+          path: '/view/:id',
+          component: r => require.ensure([], () => r(require('@/views/blog/BlogView')), 'blogview')
+        },
+        {
+          path: '/:type/all',
+          component: r => require.ensure([], () => r(require('@/views/blog/BlogAllCategoryTag')), 'blogallcategorytag')
+        },
+        {
+          path: '/:type/:id',
+          component: r => require.ensure([], () => r(require('@/views/blog/BlogCategoryTag')), 'blogcategorytag')
         }
       ]
     },
@@ -28,7 +58,11 @@ const router = new Router({
       path: '/register',
       component: r => require.ensure([], () => r(require('@/views/Register')), 'register')
     }
+
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return {x: 0, y: 0}
+  }
 })
 
 router.beforeEach((to, from, next) => {

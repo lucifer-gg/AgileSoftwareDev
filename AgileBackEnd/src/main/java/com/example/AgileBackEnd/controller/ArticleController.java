@@ -23,7 +23,7 @@ public class ArticleController {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping
+    @PostMapping("/articles")
     @LogAnnotation("获取文章列表")
     @Cache(expire = 5 * 60 * 1000,name = "listArticle")
     public Response listArticle(@RequestBody PageParams pageParams){

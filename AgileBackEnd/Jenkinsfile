@@ -1,0 +1,57 @@
+//githab的凭证
+def git_auth = "1de432e5-32a0-43f0-b8c1-786cdeebf028"
+//构建版本的名称
+def tag = "latest"
+//Harbor私服地址
+def harbor_url = "172.19.240.234:85"
+//Harbor的项目名称
+def harbor_project_name = "library"
+//Harbor的凭证
+def harbor_auth = "2ae33e10-9e9e-4e62-a1c7-9ae30a29793c"
+node {
+   stage('拉取代码') {
+   	checkout([$class: 'GitSCM',
+                 branches: [[name: '*/${branch}']],
+                 doGenerateSubmoduleConfigurations: false,
+                 extensions: [], submoduleCfg: [],
+                 userRemoteConfigs: [
+                     [credentialsId: "${git_auth}",
+                      url:'https://github.com/lucifer-gg/AgileSoftwareDev.git'
+   			]
+   		]
+   	])
+   }
+//    stage('代码审查') {
+//    	def scannerHome = tool 'sonarqube-scanner'
+//    	withSonarQubeEnv('sonarqube6.7.4') {
+//    		sh """
+//    		cd $ {project_name}
+//    		$ {scannerHome}/bin/sonar-scanner
+//    		"""
+//    	}
+//    }
+   stage('编译，构建镜像') {
+    // 进入后端地址
+    sh "cd ./AgileBackEnd"
+   	//定义镜像名称
+   	def imageName = "${project_name}:${tag}"
+   	//编译，构建本地镜像
+   	sh "mvn clean package dockerfile:build"
+   	//给镜像打标签
+   	sh "docker tag ${imageName}  ${harbor_url}/${harbor_project_name}/${imageName}"
+   	//登录Harbor，并上传镜像
+   	withCredentials([usernamePassword(
+               credentialsId: "${harbor_auth}",
+               passwordVariable: 'password',  // 就是这样的，不用替换，在jk中配置的
+               usernameVariable: 'username')])
+   	{
+   		//登录
+   		sh "docker login -u ${username} -p ${password} ${harbor_url}"
+   		//上传镜像
+   		sh "docker push ${harbor_url}/${harbor_project_name}/${imageName}"
+   	}
+   	//删除本地镜像
+   	sh "docker rmi -f ${imageName}"
+   	sh "docker rmi -f ${harbor_url}/${harbor_project_name}/${imageName}"
+   }
+}

@@ -2,7 +2,6 @@ package com.example.AgileBackEnd.controller;
 
 import com.example.AgileBackEnd.aop.cacheAspect.Cache;
 import com.example.AgileBackEnd.aop.logAspect.LogAnnotation;
-import com.example.AgileBackEnd.dao.mapper.ArticleCategoryMapper;
 import com.example.AgileBackEnd.entity.params.ArticleCommentParam;
 import com.example.AgileBackEnd.entity.params.ArticleParam;
 import com.example.AgileBackEnd.entity.params.PageParams;
@@ -10,7 +9,6 @@ import com.example.AgileBackEnd.entity.vo.Response;
 import com.example.AgileBackEnd.service.ArticleService;
 import com.example.AgileBackEnd.service.CategoryService;
 import com.example.AgileBackEnd.service.CommentService;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

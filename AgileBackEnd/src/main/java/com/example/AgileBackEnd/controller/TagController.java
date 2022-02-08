@@ -4,11 +4,9 @@ import com.example.AgileBackEnd.aop.logAspect.LogAnnotation;
 import com.example.AgileBackEnd.entity.vo.Response;
 import com.example.AgileBackEnd.entity.vo.TagVO;
 import com.example.AgileBackEnd.service.TagService;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

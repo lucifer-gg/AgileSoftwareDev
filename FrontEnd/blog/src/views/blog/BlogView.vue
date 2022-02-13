@@ -14,7 +14,7 @@
           <h1 class="me-view-title">{{article.title}}</h1>
           <div class="me-view-author">
             <a class="">
-              <img class="me-view-picture" :src="article.author.avatar"/>
+              <img class="me-view-picture" :src="article.avatar"/>
             </a>
             <div class="me-view-info">
               <span>{{article.author}}</span>
@@ -133,6 +133,7 @@
           viewCounts: 0,
           summary: '',
           author: {},
+          avatar: '/user/default_avatar.png',
           tags: [],
           category:{},
           createDate: '',
@@ -175,7 +176,6 @@
         viewArticle(that.$route.params.id).then(data => {
           Object.assign(that.article, data.data)
           that.article.editor.value = data.data.body.content
-
           that.getCommentsByArticle()
         }).catch(error => {
           if (error !== 'error') {

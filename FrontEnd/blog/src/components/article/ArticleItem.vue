@@ -12,7 +12,7 @@
       </span>
     </div>
 
-    <div class="me-artile-description">
+    <div class="me-article-description">
       {{summary}}
     </div>
     <div class="me-article-footer">
@@ -49,7 +49,8 @@
     },
     methods: {
       view(id) {
-        this.$router.push({path: `/view/${id}`})
+        let str_id = String(id)
+        this.$router.push({path: `/view/${str_id}`})
       }
     }
   }
@@ -80,7 +81,7 @@
     float: right;
   }
 
-  .me-artile-description {
+  .me-article-description {
     font-size: 13px;
     line-height: 24px;
     margin-bottom: 10px;

@@ -62,7 +62,7 @@
   export default {
     name: "CommentItem",
     props: {
-      articleId: Number,
+      articleId: String,
       comment: Object,
       index: Number,
       rootCommentCounts: Number
@@ -121,7 +121,7 @@
       },
       getEmptyReply() {
         return {
-          articleId: this.articleId,
+          articleId: Number(this.articleId),
           parent: this.comment.id,
           toUserId: '',
           content: ''

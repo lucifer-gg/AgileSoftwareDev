@@ -27,11 +27,11 @@
 </template>
 
 <script>
-  import ArticleScrollPage from '@/views/common/ArticleScrollPage'
+  import ArticleScrollPage from '@/views/ArticleScrollPage'
   import {getArticlesByCategory, getArticlesByTag} from '@/api/article'
   import {getTagDetail} from '@/api/tag'
   import {getCategoryDetail} from '@/api/category'
-  import defaultAvatar from '@/assets/img/logo.png'
+  import defaultAvatar from '@/assets/logo.png'
 
 
   export default {

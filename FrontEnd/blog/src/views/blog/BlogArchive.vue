@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import ArticleScrollPage from '@/views/common/ArticleScrollPage'
+  import ArticleScrollPage from '@/views/ArticleScrollPage'
   import {listArchives} from '@/api/article'
 /* eslint-disable */
 

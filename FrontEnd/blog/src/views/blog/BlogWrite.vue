@@ -65,7 +65,7 @@
 </template>
 
 <script>
-  import BaseHeader from '@/views/BaseHeader'
+  import BaseHeader from '@/views/BlogHeader'
   import MarkdownEditor from '@/components/markdown/MarkdownEditor'
   import {publishArticle, getArticleById} from '@/api/article'
   import {getAllCategorys} from '@/api/category'

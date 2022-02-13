@@ -4,7 +4,7 @@ import store from '../store'
   /* eslint-disable */
 const service = axios.create({
   // 暂定
-  baseURL: "http://localhost:8888/",
+  baseURL: "http://localhost ru:8888/",
   timeout: 5000
 })
 

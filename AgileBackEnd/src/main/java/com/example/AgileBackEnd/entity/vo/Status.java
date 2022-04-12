@@ -34,5 +34,6 @@ public enum Status {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
 }
 
